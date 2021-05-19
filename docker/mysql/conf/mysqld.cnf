@@ -1,0 +1,6 @@
+[mysqld]
+
+collation_server     = utf8mb4_general_ci
+
+character_set_filesystem = binary
+character_set_server     = utf8mb4
