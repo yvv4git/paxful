@@ -1,0 +1,10 @@
+DB:
+  FileNameDB: "db/service.db"
+  Host: "localhost"
+  Port: 3306
+  User: "api"
+  Password: "secret"
+  Name: "paxful"
+
+API:
+  Port: 8080
