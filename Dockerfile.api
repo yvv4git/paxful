@@ -1,0 +1,11 @@
+# I use multi stage scheme
+FROM golang:alpine AS build-env
+RUN apk --no-cache add build-base git mercurial gcc
+ADD . /src
+RUN cd /src && go build -o main.bin cmd/api/main.go
+
+FROM alpine
+WORKDIR /app
+COPY --from=build-env /src/config/ /app/config/
+COPY --from=build-env /src/main.bin /app/
+ENTRYPOINT ./main.bin
