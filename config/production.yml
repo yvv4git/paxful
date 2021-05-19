@@ -1,0 +1,10 @@
+DB:
+  Host: "db"
+  Port: 3306
+  User: "api"
+  Password: "12345"
+  Name: "paxful"
+
+API:
+  Host: "0.0.0.0"
+  Port: 8080
