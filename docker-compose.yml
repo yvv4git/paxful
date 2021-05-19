@@ -1,0 +1,41 @@
+version: "3.8"
+
+services:
+  db:
+    build:
+      context: ./docker/mysql/
+      dockerfile: Dockerfile
+    environment: 
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    hostname: db
+    container_name: paxful-db
+    ports:
+      - "3307:3306"
+  db-test:
+    build:
+      context: ./docker/mysql/
+      dockerfile: Dockerfile
+    environment: 
+      - MYSQL_DATABASE=${MYSQL_TEST_DATABASE}
+      - MYSQL_USER=${MYSQL_TEST_USER}
+      - MYSQL_PASSWORD=${MYSQL_TEST_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_TEST_ROOT_PASSWORD}
+    hostname: db
+    container_name: paxfultest-db
+    ports:
+      - "3308:3306"
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    hostname: api
+    container_name: api
+    restart: on-failure
+    ports:
+      - "8080:8080"
+    depends_on: 
+      - db
+      - db-test
