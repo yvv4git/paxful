@@ -1,0 +1,10 @@
+DB:
+  Host: "localhost"
+  Port: 3308
+  User: "api"
+  Password: "12345"
+  Name: "paxful-test"
+
+API:
+  Host: localhost
+  Port: 8080
